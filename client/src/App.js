@@ -31,7 +31,7 @@ function App() {
     //   "timeout" : 10000,				
     //   "transports" : ["websocket"]
     // };
-    const socket = io.connect('https://social-media-web-application.vercel.app/');
+    const socket = io('');
     // const socket = io();
     console.log("socket",socket);
     dispatch({type: GLOBALTYPES.SOCKET, payload: socket })
