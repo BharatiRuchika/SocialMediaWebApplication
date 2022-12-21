@@ -19,6 +19,13 @@ const {createServer}  = require("http");
 const {Server} = require("socket.io");
 const httpServer = createServer(app);
 // const srver = require('http').createServer(app)
+app.use(function (req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', 'https://social-media-web-application.vercel.app/');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  next();
+});
 app.use(cors({
   origin: "https://social-media-web-application.vercel.app/",
   credentials:true,
