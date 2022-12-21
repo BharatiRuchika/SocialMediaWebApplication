@@ -34,9 +34,11 @@ app.use(cors({
 const io = new Server(httpServer,{
   cors: {
     origin: 'https://social-media-web-application.vercel.app/',
-    credentials:true,      
+    methods: ["GET", "POST"],
+    transports: ['websocket', 'polling'],
+    credentials: true,
     optionSuccessStatus:200
-  }}
+  },allowEIO3: true}
   );
   const PORT = process.env.PORT||3000;
   httpServer.listen(PORT, () => {
