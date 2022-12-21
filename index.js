@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 var bodyParser = require('body-parser')
+const path = require("path");
 const cookieParser = require('cookie-parser');
 const SocketServer = require('./socketServer');
 const corsOptions = {
@@ -25,7 +26,7 @@ app.use(cors({
 }));
 const io = new Server(httpServer,{
   cors: {
-    origin: 'https://social-media-web-application-bharatiruchika.vercel.app/',
+    origin: 'https://social-media-web-application.vercel.app/',
     credentials:true,      
     optionSuccessStatus:200
   }}
@@ -41,6 +42,7 @@ io.on('connection', socket => {
 })
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
 if(process.env.NODE_ENV==="production"){
   const path = require("path");
   app.use(express.static(path.join(__dirname,"client/build")));
