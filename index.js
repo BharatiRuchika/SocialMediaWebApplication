@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+var bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser');
 const SocketServer = require('./socketServer');
 const corsOptions = {
@@ -12,6 +13,7 @@ app.use(express.json())
 app.options("*" , cors(corsOptions));
 app.use(cors(corsOptions));
 app.use(cookieParser())
+
 const {createServer}  = require("http");
 const {Server} = require("socket.io");
 const httpServer = createServer(app);
@@ -37,6 +39,8 @@ io.on('connection', socket => {
   console.log("connection with socket is established");
     SocketServer(socket);
 })
+app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 if(process.env.NODE_ENV==="production"){
   const path = require("path");
   app.use(express.static(path.join(__dirname,"client/build")));
