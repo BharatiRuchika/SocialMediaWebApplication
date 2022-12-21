@@ -25,7 +25,7 @@ app.use(cors({
 }));
 const io = new Server(httpServer,{
   cors: {
-    origin: 'https://social-media-web-application.vercel.app/',
+    origin: 'https://social-media-web-application-bharatiruchika.vercel.app/',
     credentials:true,      
     optionSuccessStatus:200
   }}
